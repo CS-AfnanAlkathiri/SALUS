@@ -1,0 +1,9 @@
+astronaut_id,mission_role,age_years,baseline_phase_days,data_origin
+AST-01,Commander,29,30,synthetic_demo
+AST-02,Pilot,43,30,synthetic_demo
+AST-03,Mission Specialist,37,30,synthetic_demo
+AST-04,Flight Engineer,43,30,synthetic_demo
+AST-05,Commander,33,30,synthetic_demo
+AST-06,Pilot,43,30,synthetic_demo
+AST-07,Mission Specialist,42,30,synthetic_demo
+AST-08,Flight Engineer,33,30,synthetic_demo

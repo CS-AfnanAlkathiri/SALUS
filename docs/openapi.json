@@ -1,0 +1,1614 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "SALUS",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/api/v1/health": {
+      "get": {
+        "summary": "Health",
+        "operationId": "health_api_v1_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/astronauts": {
+      "get": {
+        "summary": "Crew",
+        "operationId": "crew_api_v1_astronauts_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Crew"
+                  },
+                  "type": "array",
+                  "title": "Response Crew Api V1 Astronauts Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/astronauts/{astronaut_id}": {
+      "get": {
+        "summary": "Profile",
+        "operationId": "profile_api_v1_astronauts__astronaut_id__get",
+        "parameters": [
+          {
+            "name": "astronaut_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Astronaut Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Crew"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/body-regions": {
+      "get": {
+        "summary": "Regions",
+        "operationId": "regions_api_v1_body_regions_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Region"
+                  },
+                  "type": "array",
+                  "title": "Response Regions Api V1 Body Regions Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/body-regions/{region_id}": {
+      "get": {
+        "summary": "Region",
+        "operationId": "region_api_v1_body_regions__region_id__get",
+        "parameters": [
+          {
+            "name": "region_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Region Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Region"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/assessments": {
+      "post": {
+        "summary": "Start",
+        "operationId": "start_api_v1_assessments_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Start"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Progress"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/assessments/{assessment_id}": {
+      "get": {
+        "summary": "Assessment",
+        "operationId": "assessment_api_v1_assessments__assessment_id__get",
+        "parameters": [
+          {
+            "name": "assessment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Assessment Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionView"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/assessments/{assessment_id}/question": {
+      "get": {
+        "summary": "Next Question",
+        "operationId": "next_question_api_v1_assessments__assessment_id__question_get",
+        "parameters": [
+          {
+            "name": "assessment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Assessment Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Progress"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/assessments/{assessment_id}/answers": {
+      "post": {
+        "summary": "Submit",
+        "operationId": "submit_api_v1_assessments__assessment_id__answers_post",
+        "parameters": [
+          {
+            "name": "assessment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Assessment Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Submission"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Progress"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/assessments/{assessment_id}/complete": {
+      "post": {
+        "summary": "Complete Assessment",
+        "operationId": "complete_assessment_api_v1_assessments__assessment_id__complete_post",
+        "parameters": [
+          {
+            "name": "assessment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Assessment Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/assessments/{assessment_id}/results": {
+      "get": {
+        "summary": "Results",
+        "operationId": "results_api_v1_assessments__assessment_id__results_get",
+        "parameters": [
+          {
+            "name": "assessment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Assessment Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/measurements": {
+      "post": {
+        "summary": "Record",
+        "operationId": "record_api_v1_measurements_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Entry"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/measurements/guides": {
+      "get": {
+        "summary": "List Guides",
+        "operationId": "list_guides_api_v1_measurements_guides_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Guide"
+                  },
+                  "type": "array",
+                  "title": "Response List Guides Api V1 Measurements Guides Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/measurements/guides/{indicator_id}": {
+      "get": {
+        "summary": "Guide",
+        "operationId": "guide_api_v1_measurements_guides__indicator_id__get",
+        "parameters": [
+          {
+            "name": "indicator_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Indicator Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Guide"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/astronauts/{astronaut_id}/history": {
+      "get": {
+        "summary": "History",
+        "operationId": "history_api_v1_astronauts__astronaut_id__history_get",
+        "parameters": [
+          {
+            "name": "astronaut_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Astronaut Id"
+            }
+          },
+          {
+            "name": "through_day",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 3000,
+              "title": "Through Day"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/History"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/astronauts/{astronaut_id}/trends": {
+      "get": {
+        "summary": "Trends",
+        "operationId": "trends_api_v1_astronauts__astronaut_id__trends_get",
+        "parameters": [
+          {
+            "name": "astronaut_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Astronaut Id"
+            }
+          },
+          {
+            "name": "through_day",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 3000,
+              "title": "Through Day"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Point"
+                  },
+                  "title": "Response Trends Api V1 Astronauts  Astronaut Id  Trends Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/ml/status/{astronaut_id}": {
+      "get": {
+        "summary": "Ml Status",
+        "operationId": "ml_status_api_v1_ml_status__astronaut_id__get",
+        "parameters": [
+          {
+            "name": "astronaut_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Astronaut Id"
+            }
+          },
+          {
+            "name": "mission_day",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 45,
+              "title": "Mission Day"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/ml/analyze": {
+      "post": {
+        "summary": "Analyze",
+        "operationId": "analyze_api_v1_ml_analyze_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Readings"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModelResult"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/evidence/search": {
+      "post": {
+        "summary": "Search",
+        "operationId": "search_api_v1_evidence_search_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Search"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Evidence"
+                  },
+                  "type": "array",
+                  "title": "Response Search Api V1 Evidence Search Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/evidence/sources": {
+      "get": {
+        "summary": "Sources",
+        "operationId": "sources_api_v1_evidence_sources_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Evidence"
+                  },
+                  "type": "array",
+                  "title": "Response Sources Api V1 Evidence Sources Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/guidance/{guidance_id}": {
+      "get": {
+        "summary": "Guidance",
+        "operationId": "guidance_api_v1_guidance__guidance_id__get",
+        "parameters": [
+          {
+            "name": "guidance_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Guidance Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Guidance"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/emergency-support": {
+      "get": {
+        "summary": "Emergency",
+        "operationId": "emergency_api_v1_emergency_support_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Guidance"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Crew": {
+        "properties": {
+          "astronaut_id": {
+            "type": "string",
+            "title": "Astronaut Id"
+          },
+          "mission_role": {
+            "type": "string",
+            "title": "Mission Role"
+          },
+          "age_years": {
+            "type": "integer",
+            "title": "Age Years"
+          },
+          "baseline_phase_days": {
+            "type": "integer",
+            "title": "Baseline Phase Days"
+          },
+          "data_origin": {
+            "type": "string",
+            "title": "Data Origin"
+          }
+        },
+        "type": "object",
+        "required": [
+          "astronaut_id",
+          "mission_role",
+          "age_years",
+          "baseline_phase_days",
+          "data_origin"
+        ],
+        "title": "Crew"
+      },
+      "Entry": {
+        "properties": {
+          "astronaut_id": {
+            "type": "string",
+            "title": "Astronaut Id"
+          },
+          "mission_day": {
+            "type": "integer",
+            "maximum": 3000.0,
+            "minimum": 1.0,
+            "title": "Mission Day"
+          },
+          "indicator": {
+            "type": "string",
+            "title": "Indicator"
+          },
+          "value": {
+            "type": "number",
+            "title": "Value"
+          },
+          "context": {
+            "type": "string",
+            "maxLength": 150,
+            "title": "Context",
+            "default": "self_reported"
+          }
+        },
+        "type": "object",
+        "required": [
+          "astronaut_id",
+          "mission_day",
+          "indicator",
+          "value"
+        ],
+        "title": "Entry"
+      },
+      "Evidence": {
+        "properties": {
+          "source_id": {
+            "type": "string",
+            "title": "Source Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "section": {
+            "type": "string",
+            "title": "Section"
+          },
+          "url": {
+            "type": "string",
+            "title": "Url"
+          },
+          "passage": {
+            "type": "string",
+            "title": "Passage"
+          },
+          "retrieved_on": {
+            "type": "string",
+            "title": "Retrieved On"
+          },
+          "score": {
+            "type": "number",
+            "title": "Score"
+          }
+        },
+        "type": "object",
+        "required": [
+          "source_id",
+          "title",
+          "section",
+          "url",
+          "passage",
+          "retrieved_on",
+          "score"
+        ],
+        "title": "Evidence"
+      },
+      "Guidance": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "steps": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Steps"
+          },
+          "sources": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Sources"
+          },
+          "review_status": {
+            "type": "string",
+            "title": "Review Status"
+          },
+          "procedure_available": {
+            "type": "boolean",
+            "title": "Procedure Available"
+          }
+        },
+        "type": "object",
+        "required": [
+          "title",
+          "steps",
+          "sources",
+          "review_status",
+          "procedure_available"
+        ],
+        "title": "Guidance"
+      },
+      "Guide": {
+        "properties": {
+          "indicator": {
+            "type": "string",
+            "title": "Indicator"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "unit": {
+            "type": "string",
+            "title": "Unit"
+          },
+          "why": {
+            "type": "string",
+            "title": "Why"
+          },
+          "equipment": {
+            "type": "string",
+            "title": "Equipment"
+          },
+          "instructions": {
+            "type": "string",
+            "title": "Instructions"
+          },
+          "common_mistakes": {
+            "type": "string",
+            "title": "Common Mistakes"
+          },
+          "source": {
+            "type": "string",
+            "title": "Source"
+          },
+          "limitations": {
+            "type": "string",
+            "title": "Limitations"
+          }
+        },
+        "type": "object",
+        "required": [
+          "indicator",
+          "title",
+          "unit",
+          "why",
+          "equipment",
+          "instructions",
+          "common_mistakes",
+          "source",
+          "limitations"
+        ],
+        "title": "Guide"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "History": {
+        "properties": {
+          "records": {
+            "items": {
+              "$ref": "#/components/schemas/Point"
+            },
+            "type": "array",
+            "title": "Records"
+          },
+          "assessments": {
+            "items": {
+              "$ref": "#/components/schemas/SessionView"
+            },
+            "type": "array",
+            "title": "Assessments"
+          }
+        },
+        "type": "object",
+        "required": [
+          "records",
+          "assessments"
+        ],
+        "title": "History"
+      },
+      "ModelResult": {
+        "properties": {
+          "astronaut_id": {
+            "type": "string",
+            "title": "Astronaut Id"
+          },
+          "mission_day": {
+            "type": "integer",
+            "title": "Mission Day"
+          },
+          "baseline_status": {
+            "type": "string",
+            "title": "Baseline Status"
+          },
+          "model_version": {
+            "type": "string",
+            "title": "Model Version"
+          },
+          "features_used": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Features Used"
+          },
+          "current_values": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "type": "object",
+            "title": "Current Values"
+          },
+          "baseline_values": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "type": "object",
+            "title": "Baseline Values"
+          },
+          "baseline_deviations": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "type": "object",
+            "title": "Baseline Deviations"
+          },
+          "anomaly_flag": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Anomaly Flag"
+          },
+          "anomaly_score": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Anomaly Score"
+          },
+          "top_deviating_indicators": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Top Deviating Indicators"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Limitations"
+          }
+        },
+        "type": "object",
+        "required": [
+          "astronaut_id",
+          "mission_day",
+          "baseline_status",
+          "model_version",
+          "features_used",
+          "current_values",
+          "baseline_values",
+          "baseline_deviations",
+          "anomaly_flag",
+          "anomaly_score",
+          "top_deviating_indicators",
+          "limitations"
+        ],
+        "title": "ModelResult"
+      },
+      "Point": {
+        "properties": {
+          "mission_day": {
+            "type": "integer",
+            "title": "Mission Day"
+          },
+          "readings": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "type": "object",
+            "title": "Readings"
+          },
+          "sources": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Sources"
+          }
+        },
+        "type": "object",
+        "required": [
+          "mission_day",
+          "readings",
+          "sources"
+        ],
+        "title": "Point"
+      },
+      "Progress": {
+        "properties": {
+          "session": {
+            "$ref": "#/components/schemas/SessionView"
+          },
+          "question": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Question"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "answered": {
+            "type": "integer",
+            "title": "Answered"
+          },
+          "total": {
+            "type": "integer",
+            "title": "Total"
+          }
+        },
+        "type": "object",
+        "required": [
+          "session",
+          "question",
+          "answered",
+          "total"
+        ],
+        "title": "Progress"
+      },
+      "Question": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "prompt": {
+            "type": "string",
+            "title": "Prompt"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "choice",
+              "number",
+              "text"
+            ],
+            "title": "Type"
+          },
+          "options": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Options",
+            "default": []
+          },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "default": ""
+          },
+          "optional": {
+            "type": "boolean",
+            "title": "Optional",
+            "default": false
+          },
+          "unit": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Unit"
+          },
+          "minimum": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Minimum"
+          },
+          "maximum": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Maximum"
+          },
+          "guide_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Guide Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "prompt",
+          "type"
+        ],
+        "title": "Question"
+      },
+      "Readings": {
+        "properties": {
+          "astronaut_id": {
+            "type": "string",
+            "title": "Astronaut Id"
+          },
+          "mission_day": {
+            "type": "integer",
+            "maximum": 3000.0,
+            "minimum": 1.0,
+            "title": "Mission Day"
+          },
+          "measurements": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "type": "object",
+            "title": "Measurements"
+          }
+        },
+        "type": "object",
+        "required": [
+          "astronaut_id",
+          "mission_day",
+          "measurements"
+        ],
+        "title": "Readings"
+      },
+      "Region": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "concerns": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Concerns"
+          },
+          "evidence_topic": {
+            "type": "string",
+            "title": "Evidence Topic"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "description",
+          "concerns",
+          "evidence_topic"
+        ],
+        "title": "Region"
+      },
+      "Result": {
+        "properties": {
+          "session": {
+            "$ref": "#/components/schemas/SessionView"
+          },
+          "urgent": {
+            "type": "boolean",
+            "title": "Urgent",
+            "default": false
+          },
+          "imported": {
+            "type": "boolean",
+            "title": "Imported",
+            "default": false
+          },
+          "answers": {
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": "object",
+            "title": "Answers",
+            "default": {}
+          },
+          "measurements": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "type": "object",
+            "title": "Measurements",
+            "default": {}
+          },
+          "symptom_onset": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Symptom Onset"
+          },
+          "ml": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ModelResult"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/Evidence"
+            },
+            "type": "array",
+            "title": "Evidence",
+            "default": []
+          },
+          "guidance": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Guidance"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Limitations",
+            "default": []
+          }
+        },
+        "type": "object",
+        "required": [
+          "session"
+        ],
+        "title": "Result"
+      },
+      "Search": {
+        "properties": {
+          "query": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Query"
+          },
+          "limit": {
+            "type": "integer",
+            "maximum": 10.0,
+            "minimum": 1.0,
+            "title": "Limit",
+            "default": 3
+          }
+        },
+        "type": "object",
+        "required": [
+          "query"
+        ],
+        "title": "Search"
+      },
+      "SessionView": {
+        "properties": {
+          "assessment_id": {
+            "type": "string",
+            "title": "Assessment Id"
+          },
+          "astronaut_id": {
+            "type": "string",
+            "title": "Astronaut Id"
+          },
+          "mission_day": {
+            "type": "integer",
+            "title": "Mission Day"
+          },
+          "body_region": {
+            "type": "string",
+            "title": "Body Region"
+          },
+          "concern": {
+            "type": "string",
+            "title": "Concern"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "origin": {
+            "type": "string",
+            "title": "Origin"
+          }
+        },
+        "type": "object",
+        "required": [
+          "assessment_id",
+          "astronaut_id",
+          "mission_day",
+          "body_region",
+          "concern",
+          "status",
+          "origin"
+        ],
+        "title": "SessionView"
+      },
+      "Start": {
+        "properties": {
+          "astronaut_id": {
+            "type": "string",
+            "title": "Astronaut Id"
+          },
+          "mission_day": {
+            "type": "integer",
+            "maximum": 3000.0,
+            "minimum": 1.0,
+            "title": "Mission Day"
+          },
+          "body_region": {
+            "type": "string",
+            "title": "Body Region"
+          },
+          "concern": {
+            "type": "string",
+            "title": "Concern"
+          }
+        },
+        "type": "object",
+        "required": [
+          "astronaut_id",
+          "mission_day",
+          "body_region",
+          "concern"
+        ],
+        "title": "Start"
+      },
+      "Submission": {
+        "properties": {
+          "question_id": {
+            "type": "string",
+            "title": "Question Id"
+          },
+          "value": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Value"
+          }
+        },
+        "type": "object",
+        "required": [
+          "question_id",
+          "value"
+        ],
+        "title": "Submission"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

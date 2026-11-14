@@ -1,0 +1,1 @@
+{"name":"salus-local","private":true,"scripts":{"dev":"python backend/preview.py"}}
